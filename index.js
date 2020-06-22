@@ -7,19 +7,31 @@ const rl = readline.createInterface({
 //Takes the unsorted list, declares a variable unsortedList which contains the unsorted list
 rl.question('Please input the unsorted list (seperated by commas, like so: 1, 3, 4, 2, 5) ', (unsortedList) => {
   console.log(`The unsorted list is: ` + unsortedList);
-rl.close();
+rl.close();})
 
-var toBeSorted = new Array (unsortedList)
-console.log("The following list will be sorted: " + toBeSorted)
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-toBeSorted.sort(function (randomization) { return 0.5 - Math.random() })
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-if (toBeSorted.length > 0) {
-randomization(toBeSorted)
-} else {
-  return;
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
+// Used like so
+var arr = new Array (unsortedList);
+shuffle(arr);
+console.log(arr);
 
 
 
@@ -35,4 +47,4 @@ randomization(toBeSorted)
 
 
 //do not touch
-console.log(toBeSorted)})
+console.log("randomized: " + toBeSorted)
